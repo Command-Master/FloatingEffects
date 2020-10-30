@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "commandmaster.floateffects.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "LivingEntityMixin",
+    "SaveMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

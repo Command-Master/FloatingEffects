@@ -14,14 +14,26 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import java.util.Collection;
 import java.util.Iterator;
+
+import io.netty.handler.codec.http.websocketx.WebSocketClientProtocolHandler;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.network.ClientPlayerInteractionManager;
+import net.minecraft.client.util.ClientPlayerTickable;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.command.argument.MobEffectArgumentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffectUtil;
+import net.minecraft.network.NetworkState;
+import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.EntityTrackerEntry;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.Nullable;
 
@@ -66,7 +78,6 @@ public class FloatEffectCommand {
         }
 
         Iterator var8 = targets.iterator();
-
         while(var8.hasNext()) {
             Entity entity = (Entity)var8.next();
             if (entity instanceof LivingEntity) {

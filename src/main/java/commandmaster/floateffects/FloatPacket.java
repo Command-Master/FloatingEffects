@@ -1,4 +1,4 @@
-package commandmaster.floateffects.mixin;
+package commandmaster.floateffects;
 
 public interface FloatPacket { // stupid hack to allow casting to a mixin
     public boolean getIsFloat();

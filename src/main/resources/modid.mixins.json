@@ -7,7 +7,9 @@
   ],
   "client": [
     "LivingEntityMixin",
-    "SaveMixin"
+    "SaveMixin",
+    "StatusPacketMixin",
+    "ClientHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

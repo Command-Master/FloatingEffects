@@ -10,6 +10,7 @@ import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.network.packet.s2c.play.PlayerAbilitiesS2CPacket;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -61,6 +62,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(at = @At("HEAD"), method = "jump", cancellable = true)
     private void jump(CallbackInfo ci) {
         System.out.println("Jump!");
+//
         StatusEffectInstance statusEffectInstance = getStatusEffect(StatusEffects.JUMP_BOOST);
         System.out.println(statusEffectInstance);
         if (statusEffectInstance instanceof FloatStatusEffectInstance) {
@@ -70,14 +72,14 @@ public abstract class LivingEntityMixin extends Entity {
             System.out.println(f);
             f += 0.1F * (float)(floatInstance.amplifier + 1);
             System.out.println(f);
-            Vec3d vec3d = this.getVelocity();
-            this.setVelocity(vec3d.x, f, vec3d.z);
-            if (this.isSprinting()) {
+            Vec3d vec3d = getVelocity();
+            setVelocity(vec3d.x, f, vec3d.z);
+            if (isSprinting()) {
                 float g = this.yaw * 0.017453292F;
-                this.setVelocity(this.getVelocity().add(-MathHelper.sin(g) * 0.2F, 0.0D, MathHelper.cos(g) * 0.2F));
+                setVelocity(getVelocity().add(-MathHelper.sin(g) * 0.2F, 0.0D, MathHelper.cos(g) * 0.2F));
             }
 
-            this.velocityDirty = true;
+            velocityDirty = true;
         }
     }
 }

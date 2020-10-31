@@ -12,12 +12,8 @@ import java.lang.reflect.Field;
 
 public class FloatStatusEffectInstance extends StatusEffectInstance {
     public double amplifier;
+
     public FloatStatusEffectInstance(StatusEffect type, int duration, double amplifier, boolean ambient, boolean showParticles, boolean showIcon) {
-        /*
-        Intified: Levitation, Saturation and resistance ):
-        Saturation doesn't work since minecraft only handles integer food values
-        Bad Omen is bad omen
-         */
         super(type, duration, (int) amplifier, ambient, showParticles, showIcon);
         if (type == StatusEffects.LEVITATION)
             MinecraftClient.getInstance().player.sendChatMessage("Levitation doesn't work with floating point values and was turned to " + ((int) amplifier));
@@ -37,9 +33,8 @@ public class FloatStatusEffectInstance extends StatusEffectInstance {
             if (this.getEffectType() == StatusEffects.BAD_OMEN) {
                 return super.update(entity, overwriteCallback);
             }
-            if (FloatUtils.canApplyUpdateEffect(this.getEffectType() ,this.getDuration(), this.amplifier)) {
+            if (FloatUtils.canApplyUpdateEffect(this.getEffectType(), this.getDuration(), this.amplifier)) {
                 FloatUtils.applyUpdateEffect(this.getEffectType(), entity, this.amplifier);
-//                this.applyUpdateEffect(entity);
             }
 
             try {
@@ -56,7 +51,7 @@ public class FloatStatusEffectInstance extends StatusEffectInstance {
     }
 
     public CompoundTag toTag(CompoundTag tag) {
-        tag.putByte("Id", (byte)StatusEffect.getRawId(this.getEffectType()));
+        tag.putByte("Id", (byte) StatusEffect.getRawId(this.getEffectType()));
         this.typelessToTag(tag);
         return tag;
     }
@@ -77,7 +72,6 @@ public class FloatStatusEffectInstance extends StatusEffectInstance {
     }
 
     private static StatusEffectInstance fromTag(StatusEffect type, CompoundTag tag) {
-//        tag.getType("Amplifier") == 6
         double i = tag.getDouble("Amplifier");
         int j = tag.getInt("Duration");
         boolean bl = tag.getBoolean("Ambient");

@@ -1,6 +1,5 @@
 package commandmaster.floateffects;
 
-import commandmaster.floateffects.mixin.LivingEntityMixin;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -9,7 +8,6 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.stat.Stat;
 
 import java.lang.reflect.Field;
 import java.util.Iterator;
@@ -74,12 +72,12 @@ public class FloatUtils {
 
     public static void onApplied(StatusEffect effect, LivingEntity entity, AttributeContainer attributes, double amplifier) {
         if (effect instanceof AbsorptionStatusEffect) {
-            entity.setAbsorptionAmount(entity.getAbsorptionAmount() + (float)(4 * (amplifier + 1)));
+            entity.setAbsorptionAmount(entity.getAbsorptionAmount() + (float) (4 * (amplifier + 1)));
         }
         try {
             Field modifiers = StatusEffect.class.getDeclaredField("attributeModifiers");
             modifiers.setAccessible(true);
-            Iterator var4 = ((Map<EntityAttribute, EntityAttributeModifier>)modifiers.get(effect)).entrySet().iterator();
+            Iterator var4 = ((Map<EntityAttribute, EntityAttributeModifier>) modifiers.get(effect)).entrySet().iterator();
 
             while (var4.hasNext()) {
                 Map.Entry<EntityAttribute, EntityAttributeModifier> entry = (Map.Entry) var4.next();

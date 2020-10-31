@@ -1,7 +1,4 @@
-package commandmaster.floateffects;//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
+package commandmaster.floateffects;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.brigadier.CommandDispatcher;
@@ -12,30 +9,19 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
-import java.util.Collection;
-import java.util.Iterator;
-
-import io.netty.handler.codec.http.websocketx.WebSocketClientProtocolHandler;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.network.ClientPlayerInteractionManager;
-import net.minecraft.client.util.ClientPlayerTickable;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.command.argument.MobEffectArgumentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectUtil;
-import net.minecraft.network.NetworkState;
-import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.EntityTrackerEntry;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 public class FloatEffectCommand {
     private static final SimpleCommandExceptionType GIVE_FAILED_EXCEPTION = new SimpleCommandExceptionType(new TranslatableText("commands.effect.give.failed"));
@@ -50,7 +36,7 @@ public class FloatEffectCommand {
         })).then(((RequiredArgumentBuilder)CommandManager.argument("targets", EntityArgumentType.entities()).executes((commandContext) -> {
             return executeClear((ServerCommandSource)commandContext.getSource(), EntityArgumentType.getEntities(commandContext, "targets"));
         })).then(CommandManager.argument("effect", MobEffectArgumentType.mobEffect()).executes((commandContext) -> {
-            return executeClear((ServerCommandSource)commandContext.getSource(), EntityArgumentType.getEntities(commandContext, "targets"), MobEffectArgumentType.getMobEffect(commandContext, "effect"));
+            return executeClear(commandContext.getSource(), EntityArgumentType.getEntities(commandContext, "targets"), MobEffectArgumentType.getMobEffect(commandContext, "effect"));
         })))).then(CommandManager.literal("give").then(CommandManager.argument("targets", EntityArgumentType.entities()).then(((RequiredArgumentBuilder)CommandManager.argument("effect", MobEffectArgumentType.mobEffect()).executes((commandContext) -> {
             return executeGive((ServerCommandSource)commandContext.getSource(), EntityArgumentType.getEntities(commandContext, "targets"), MobEffectArgumentType.getMobEffect(commandContext, "effect"), (Integer)null, 0, true);
         })).then(((RequiredArgumentBuilder)CommandManager.argument("seconds", IntegerArgumentType.integer()).executes((commandContext) -> {

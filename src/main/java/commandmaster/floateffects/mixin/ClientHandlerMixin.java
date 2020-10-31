@@ -25,7 +25,6 @@ public class ClientHandlerMixin {
 
     @Inject(method = "onEntityPotionEffect", at = @At("HEAD"), cancellable = true)
     public void onEntityPotionEffect(EntityStatusEffectS2CPacket packet, CallbackInfo ci) {
-        System.out.println("test");
         if (((FloatPacket)packet).getIsFloat()) {
             ci.cancel();
             NetworkThreadUtils.forceMainThread(packet, (ClientPlayNetworkHandler)(Object)this, this.client);

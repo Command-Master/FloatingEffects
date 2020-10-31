@@ -15,16 +15,6 @@ public class FloatStatusEffectInstance extends StatusEffectInstance {
 
     public FloatStatusEffectInstance(StatusEffect type, int duration, double amplifier, boolean ambient, boolean showParticles, boolean showIcon) {
         super(type, duration, (int) amplifier, ambient, showParticles, showIcon);
-        if (type == StatusEffects.LEVITATION)
-            MinecraftClient.getInstance().player.sendChatMessage("Levitation doesn't work with floating point values and was turned to " + ((int) amplifier));
-        else if (type == StatusEffects.SATURATION)
-            MinecraftClient.getInstance().player.sendChatMessage("Saturation doesn't work with floating point values and was turned to " + ((int) amplifier));
-        else if (type == StatusEffects.RESISTANCE)
-            MinecraftClient.getInstance().player.sendChatMessage("Resistance doesn't work with floating point values and was turned to " + ((int) amplifier));
-        else if (type == StatusEffects.BAD_OMEN)
-            MinecraftClient.getInstance().player.sendChatMessage("Bad Omen doesn't work with floating point values and was turned to " + ((int) amplifier));
-        else if (type == StatusEffects.HASTE)
-            MinecraftClient.getInstance().player.sendChatMessage("Haste doesn't work with floating point values and was turned to " + ((int) amplifier));
         this.amplifier = amplifier;
     }
 

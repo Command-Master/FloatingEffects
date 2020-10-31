@@ -92,32 +92,4 @@ public class FloatUtils {
             e.printStackTrace();
         }
     }
-
-//    public static void onRemoved(StatusEffect effect, LivingEntity entity, AttributeContainer attributes, double amplifier) {
-//
-//        // annoinances: healthboost, absorption, damage, instant
-//        if (effect instanceof HealthBoostStatusEffect) {
-//            nrem(effect, entity, attributes, amplifier);
-//            if (entity.getHealth() > entity.getMaxHealth()) {
-//                entity.setHealth(entity.getMaxHealth());
-//            }
-//        } else if (effect instanceof AbsorptionStatusEffect) {
-//            entity.setAbsorptionAmount(entity.getAbsorptionAmount() - (float) (4 * (amplifier + 1)));
-//            nrem(effect, entity, attributes, amplifier);
-//        } else {
-//            nrem(effect, entity, attributes, amplifier);
-//        }
-//    }
-//
-//    public static void nrem(StatusEffect effect, LivingEntity entity, AttributeContainer attributes, double amplifier) {
-//        Iterator var4 = effect.attributeModifiers.entrySet().iterator();
-//
-//        while (var4.hasNext()) {
-//            Map.Entry<EntityAttribute, EntityAttributeModifier> entry = (Map.Entry) var4.next();
-//            EntityAttributeInstance entityAttributeInstance = attributes.getCustomInstance((EntityAttribute) entry.getKey());
-//            if (entityAttributeInstance != null) {
-//                entityAttributeInstance.removeModifier((EntityAttributeModifier) entry.getValue());
-//            }
-//        }
-//    }
 }

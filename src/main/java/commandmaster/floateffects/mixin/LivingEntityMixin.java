@@ -59,17 +59,12 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(at = @At("HEAD"), method = "jump", cancellable = true)
     private void jump(CallbackInfo ci) {
-        System.out.println("Jump!");
-//
         StatusEffectInstance statusEffectInstance = getStatusEffect(StatusEffects.JUMP_BOOST);
-        System.out.println(statusEffectInstance);
         if (statusEffectInstance instanceof FloatStatusEffectInstance) {
             ci.cancel();
             FloatStatusEffectInstance floatInstance = (FloatStatusEffectInstance) statusEffectInstance;
             float f = getJumpVelocity();
-            System.out.println(f);
             f += 0.1F * (float)(floatInstance.amplifier + 1);
-            System.out.println(f);
             Vec3d vec3d = getVelocity();
             setVelocity(vec3d.x, f, vec3d.z);
             if (isSprinting()) {

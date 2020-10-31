@@ -9,6 +9,5 @@ public class FloatEffects implements ModInitializer {
 		CommandRegistrationCallback.EVENT.register(((dispatcher, dedicated) -> {
 			FloatEffectCommand.register(dispatcher);
 		}));
-		System.out.println("Hello Fabric world!");
 	}
 }

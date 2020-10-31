@@ -9,7 +9,7 @@
     "Command Master"
   ],
 
-  "license": "MIT",
+  "license": "GNU v3.0 license",
 
   "environment": "*",
   "entrypoints": {

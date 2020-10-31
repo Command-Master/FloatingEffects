@@ -2,7 +2,6 @@ package commandmaster.floateffects.mixin;
 
 import commandmaster.floateffects.FloatPacket;
 import commandmaster.floateffects.FloatStatusEffectInstance;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.world.ClientWorld;
@@ -10,8 +9,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.NetworkThreadUtils;
 import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;

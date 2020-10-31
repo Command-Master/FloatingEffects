@@ -2,7 +2,6 @@ package commandmaster.floateffects.mixin;
 
 import commandmaster.floateffects.FloatPacket;
 import commandmaster.floateffects.FloatStatusEffectInstance;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.network.PacketByteBuf;

@@ -85,7 +85,13 @@ public class FloatUtils {
                 if (entityAttributeInstance != null) {
                     EntityAttributeModifier entityAttributeModifier = entry.getValue();
                     entityAttributeInstance.removeModifier(entityAttributeModifier);
-                    entityAttributeInstance.addPersistentModifier(new EntityAttributeModifier(entityAttributeModifier.getId(), effect.getTranslationKey() + " " + amplifier, entityAttributeModifier.getValue() * (amplifier + 1), entityAttributeModifier.getOperation()));
+                    double modifier = entityAttributeModifier.getValue() * (amplifier + 1);
+                    if (effect instanceof DamageModifierStatusEffect) {
+                        Field modifierField = DamageModifierStatusEffect.class.getDeclaredField("modifier");
+                        modifierField.setAccessible(true);
+                        modifier = (amplifier + 1) * (Double)modifierField.get(effect);
+                    }
+                    entityAttributeInstance.addPersistentModifier(new EntityAttributeModifier(entityAttributeModifier.getId(), effect.getTranslationKey() + " " + amplifier, modifier, entityAttributeModifier.getOperation()));
                 }
             }
         } catch (NoSuchFieldException | IllegalAccessException e) {
